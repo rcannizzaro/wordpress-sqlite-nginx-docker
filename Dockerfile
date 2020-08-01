@@ -7,14 +7,14 @@ ENV DOCUMENT_ROOT /usr/share/nginx/html
 
 #Install nginx php-fpm php-pdo unzip curl
 RUN apt-get update 
-RUN apt-get -y install php-fpm unzip curl apt-utils php-curl php-gd php-intl php-pear php-imagick php-imap php-memcache php-pspell php-recode php-sqlite3 php-tidy php-xmlrpc php-xsl
+RUN apt-get -y install p7zip-full php-fpm unzip curl apt-utils php-curl php-gd php-intl php-pear php-imagick php-imap php-memcache php-pspell php-recode php-sqlite3 php-tidy php-xmlrpc php-xsl
 
 RUN rm -rf ${DOCUMENT_ROOT}/*
 RUN curl -o wordpress.tar.gz https://wordpress.org/latest.tar.gz
 RUN tar -xzvf /wordpress.tar.gz --strip-components=1 --directory ${DOCUMENT_ROOT}
 
 RUN curl -o sqlite-plugin.zip https://github.com/rcannizzaro/wp-sqlite-integration/archive/master.zip
-RUN unzip sqlite-plugin.zip -d ${DOCUMENT_ROOT}/wp-content/plugins/
+RUN 7z x sqlite-plugin.zip -o${DOCUMENT_ROOT}/wp-content/plugins/
 RUN rm sqlite-plugin.zip
 RUN cp ${DOCUMENT_ROOT}/wp-content/plugins/sqlite-integration/db.php ${DOCUMENT_ROOT}/wp-content
 RUN cp ${DOCUMENT_ROOT}/wp-config-sample.php ${DOCUMENT_ROOT}/wp-config.php

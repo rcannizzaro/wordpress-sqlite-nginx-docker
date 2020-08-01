@@ -13,7 +13,7 @@ RUN rm -rf ${DOCUMENT_ROOT}/*
 RUN curl -o wordpress.tar.gz https://wordpress.org/latest.tar.gz
 RUN tar -xzvf /wordpress.tar.gz --strip-components=1 --directory ${DOCUMENT_ROOT}
 
-RUN curl -o sqlite-plugin.zip https://downloads.wordpress.org/plugin/sqlite-integration.1.8.1.zip
+RUN curl -o sqlite-plugin.zip https://github.com/rcannizzaro/wp-sqlite-integration/archive/master.zip
 RUN unzip sqlite-plugin.zip -d ${DOCUMENT_ROOT}/wp-content/plugins/
 RUN rm sqlite-plugin.zip
 RUN cp ${DOCUMENT_ROOT}/wp-content/plugins/sqlite-integration/db.php ${DOCUMENT_ROOT}/wp-content
@@ -50,4 +50,3 @@ EXPOSE 80
 EXPOSE 443
 
 CMD cp --no-clobber -vr ${DOCUMENT_ROOT}/wp-content/pkg-plugins/* ${DOCUMENT_ROOT}/wp-content/plugins/ && cp --no-clobber -vr ${DOCUMENT_ROOT}/wp-content/pkg-themes/* ${DOCUMENT_ROOT}/wp-content/themes/ && service php5-fpm start && nginx
-    

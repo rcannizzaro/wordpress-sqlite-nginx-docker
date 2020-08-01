@@ -7,7 +7,7 @@ ENV DOCUMENT_ROOT /usr/share/nginx/html
 
 #Install nginx php-fpm php-pdo unzip curl
 RUN apt-get update 
-RUN apt-get -y install php-fpm unzip curl apt-utils php-curl php-gd php-intl php-pear php-imagick php-imap php-mcrypt php-memcache php-pspell php-recode php-sqlite php-tidy php-xmlrpc php-xsl
+RUN apt-get -y install php-fpm unzip curl apt-utils php-curl php-gd php-intl php-pear php-imagick php-imap php-memcache php-pspell php-recode php-sqlite3 php-tidy php-xmlrpc php-xsl
 
 RUN rm -rf ${DOCUMENT_ROOT}/*
 RUN curl -o wordpress.tar.gz https://wordpress.org/latest.tar.gz
